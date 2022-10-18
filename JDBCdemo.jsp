@@ -8,9 +8,9 @@
     
     <table border="1">
       <tr>
-        <td>SJSU ID</td>
-        <td>Student Name</td>
-        <td>Major</td>
+        <td>Ingredient ID</td>
+        <td>Food Name</td>
+        <td>Description</td>
    </tr>
     <% 
         String db = "CS157A";
@@ -21,17 +21,17 @@
             
             java.sql.Connection con; 
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Recipe_Boo?autoReconnect=true&useSSL=false",user, password);
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Recipe_Book?autoReconnect=true&useSSL=false",user, password);
             out.println(db + " database successfully opened.<br/><br/>");
             
-            <%-- out.println("Initial entries in table \"HW1\" (temp): <br/>");
+            out.println("Initial entries in table \"Ingredient\": <br/>");
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM HW1");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Ingredient");
             while (rs.next()) {
-                out.println(rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) + "<br/><br/>");
+                out.println(rs.getInt(1) + " " + rs.getString(2) + ": " + rs.getString(3) + "<br/><br/>");
             }
             rs.close();
-            stmt.close(); --%>
+            stmt.close();
             con.close();
         } catch(SQLException e) { 
             out.println("SQLException caught: " + e.getMessage()); 
