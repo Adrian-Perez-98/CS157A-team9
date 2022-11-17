@@ -14,7 +14,7 @@
         if(o1 != null) {
             String account_id = (String)o1;
             String username = (String)o2;
-            out.println("Hello " + username + "!"); 
+            out.println("Hello " + username + "!");
             %>
                 <h3>Recipe Form</h3> <br/>  
                 <form action="CreateRecipe.jsp" method="post">  
@@ -28,7 +28,7 @@
                     <input type="submit" value="Add Recipe"/>
                 </form> 
                 <br/>
-                <form action="CreateRecipe.jsp" method="post"> 
+                <form action="LoginPage.jsp" method="post"> 
                     <input type="submit" value="Sign Out" name="sign_out"/>
                 </form>
             <%
@@ -63,13 +63,8 @@
             } catch(SQLException e) { 
                 out.println("SQLException caught: " + e.getMessage()); 
             }
-
-            if(request.getParameter("sign_out") != null) {
-                session.invalidate();
-                response.sendRedirect("LoginPage.jsp");
-            }
         } else {
-            out.println("You don't have access to this page."); 
+            out.println("You don't have access to this page.");
         }
     %>
   </body>
