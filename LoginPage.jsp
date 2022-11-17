@@ -33,7 +33,8 @@
             if(rs.next()) {
               out.print("Hello " + rs.getString(2) + "!"); 
               session.setAttribute("account_id",rs.getString(1));
-              %><c:redirect url="/RecipePage.jsp"/><%
+              session.setAttribute("username",rs.getString(2));
+              response.sendRedirect("CreateRecipe.jsp");
               //response.setHeader("Location", "http://localhost:8081/CS157A-team9/CreateRecipe.jsp"); 
             } else {
               out.print("User and password does not exists");
