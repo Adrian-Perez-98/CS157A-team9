@@ -14,9 +14,9 @@
         if(o1 != null) {
             String account_id = (String)o1;
             String username = (String)o2;
-            out.println("Hello " + username + "!");
+            //out.println("Hello " + username + "!");
             %>
-                <h3>Recipe Form</h3> <br/>  
+                <h3>Recipe Form</h3>
                 <form action="CreateRecipe.jsp" method="post">  
                     Recipe Title:<input type="text" name="recipe_name"/><br/><br/>  
                     Short Description:<input type="text" name="desc"/><br/><br/> 
@@ -32,6 +32,7 @@
                     <input type="submit" value="Sign Out" name="sign_out"/>
                 </form>
             <%
+            out.println(username + " is signed in."); 
             try {
                 String recipe_name = request.getParameter("recipe_name");
                 String short_desc = request.getParameter("desc");
@@ -61,7 +62,7 @@
                     out.println("Missing fields! make sure: Recipe Title, Short Description, Peperation Time, and Cook Time are filled out."); 
                 }
             } catch(SQLException e) { 
-                out.println("SQLException caught: " + e.getMessage()); 
+                out.println("Something went wrong.<br/>");
             }
         } else {
             out.println("You don't have access to this page.");
