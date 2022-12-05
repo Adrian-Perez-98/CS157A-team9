@@ -1,8 +1,6 @@
 <%@ page import="java.sql.*"%>
 <html>
-  <head>
-    <title>Recipe Edit Form</title>
-    </head>
+<link rel="stylesheet" href="style.css">  
   <body>
       <% 
         String db = "CS157A";
@@ -20,8 +18,32 @@
 
         
         if(account_id != null) {
-
-            //out.println("Hello " + curr_recipe_id + " !");
+            %>
+            <div class="header">
+                <img src="RecipeBook.jpeg" alt="Recipe Book Logo" class="logo"> 
+                <header class="title">Recipe Edit Form</header>
+                <br/>
+                <form action="HomePage.jsp" method="post"> 
+                    <input type="submit" value="Home" name="home" class="home_button"/>   
+                    <input type="submit" value="My Recipes" name="my_recipes" class="home_button"/>
+                    <input type="submit" value="My Grocery Lists" name="my_grocery_lists" class="home_button"/>
+                    <input type="submit" value="Sign Out" name="sign_out" class="home_button"/>
+                </form> 
+            </div>
+            <br style="clear:both" />
+            <%
+            if(request.getParameter("my_recipes") != null) {
+            response.sendRedirect("MyRecipes.jsp");
+            }
+            if(request.getParameter("my_grocery_lists") != null) {
+                response.sendRedirect("GroceryList.jsp");
+            }
+            if(request.getParameter("sign_out") != null) {
+                session.invalidate();
+                out.print("Signed Out.\n");
+                response.sendRedirect("LoginPage.jsp");
+            }
+           
             Statement stmt = con.createStatement();
             try {
                 ResultSet rs = stmt.executeQuery("SELECT * FROM Recipe WHERE account_id='" + account_id + "' AND recipe_id='" + curr_recipe_id + "'");
@@ -40,7 +62,6 @@
                     }
 
                     %>
-                    <h3>Recipe Edit Form</h3> 
                     <form action="EditRecipe.jsp" method="post">  
                         Recipe Title:<input type="text" value="<%=title%>" name="recipe_name"/><br/><br/>  
                         Short Description:<input type="text" value="<%=description%>" name="desc"/><br/><br/> 
@@ -79,20 +100,13 @@
                             out.println("Something went wrong. <br/>");
                         }
                     }
-                    %>
-                    <form action="LoginPage.jsp" method="post"> 
-                        <input type="submit" value="Sign Out" name="sign_out"/>
-                    </form>
-                    <%
-
                 }
                 rs.close();
                 stmt.close();
                 con.close();
             } catch(SQLException e) {
                 out.println("Something went wrong.<br/>");
-            }
-            out.println(username + " is signed in.<br/>"); 
+            } 
         } else {
             out.println("You don't have access to this page.<br/>");
         }

@@ -1,7 +1,8 @@
 <%@ page import="java.sql.*"%>
 <html>
+<link rel="stylesheet" href="style.css"> 
   <head>
-    <title>Recipe Form</title>
+    <title>My Recipes</title>
     </head>
   <body>
       <% 
@@ -15,7 +16,17 @@
             String account_id = (String)o1;
             String username = (String)o2;
             %>
-                <h3>My Recipes</h3>    
+            <div class="header">
+                <img src="RecipeBook.jpeg" alt="Recipe Book Logo" class="logo"> 
+                <header class="title">My Recipes</header>
+                <br/> 
+                <form action="HomePage.jsp" method="post">    
+                <input type="submit" value="Home" name="home" class="home_button"/>
+                <input type="submit" value="My Grocery Lists" name="my_grocery_lists" class="home_button"/>
+                <input type="submit" value="Sign Out" name="sign_out" class="home_button"/>
+                </form>
+            </div>
+            <br style="clear:both" />
             <%
             try {
                 java.sql.Connection con; 
@@ -58,13 +69,17 @@
             } catch(SQLException e) { 
                 out.println("Something went wrong.<br/>");
             }
-            %>
-                <br/>
-                <form action="LoginPage.jsp" method="post"> 
-                    <input type="submit" value="Sign Out" name="sign_out"/>
-                </form>
-            <%
-            out.println(username + " is signed in.<br/>"); 
+            if(request.getParameter("home") != null) {
+            response.sendRedirect("HomePage.jsp");
+            }
+            if(request.getParameter("my_grocery_lists") != null) {
+                response.sendRedirect("GroceryList.jsp");
+            }
+            if(request.getParameter("sign_out") != null) {
+                session.invalidate();
+                out.print("Signed Out.\n");
+                response.sendRedirect("LoginPage.jsp");
+            }
         } else {
             out.println("You don't have access to this page.<br/>");
         }

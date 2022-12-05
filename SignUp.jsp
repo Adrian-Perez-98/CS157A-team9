@@ -1,17 +1,21 @@
 <%@ page import="java.sql.*"%>
 <html>
-  <head>
-    <title>Sign Up</title>
-    </head>
+<link rel="stylesheet" href="style.css"> 
   <body>
-    <h3>Sign Up Form</h3>  
+    <div class="login">
+      <img src="RecipeBook.jpeg" alt="Recipe Book Logo" class="logo_login"> 
+      <br style="clear:both" />
+      <header class="title">Sign Up</header>
+      <br/>  
+    </div>
     <br/>  
-    <form action="SignUp.jsp" method="post"> 
-    Username:<input type="text" name="username"/><br/><br/>   
-    Email:<input type="text" name="email"/><br/><br/>  
-    Password:<input type="password" name="password"/><br/><br/>  
-    <input type="submit" value="Sign Up"/>
-    </form> 
+    <div class="content">
+      <form action="SignUp.jsp" method="post"> 
+      Username:<input type="text" name="username"/><br/><br/>   
+      Email:<input type="text" name="email"/><br/><br/>  
+      Password:<input type="password" name="password"/><br/><br/>  
+      <input type="submit" value="Sign Up"/>
+      </form> 
     <% 
         String db = "CS157A";
         String user; // assumes database name is the same as username
@@ -41,10 +45,10 @@
                     <%
                 } catch (Exception e) {
                     out.print("User was not added\n");
-                    out.print("User alredy exists\n");
+                    out.print("User already exists.\n");
                 }
             } else {
-              out.print("User alredy exists");
+              out.print("User already exists.\n");
             }
         
             rs.close();
@@ -54,5 +58,6 @@
             out.println("SQLException caught: " + e.getMessage()); 
         } 
     %>
+    </div>
   </body>
 </html>

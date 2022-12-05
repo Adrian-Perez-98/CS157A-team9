@@ -1,21 +1,27 @@
 <%@ page import="java.sql.*"%>
 <html>
-  <head>
-    <title>Login</title>
-    </head>
+<link rel="stylesheet" href="style.css">  
   <body>
-    <h3>Login Form</h3>  
-    <br/>  
-    <form action="LoginPage.jsp" method="post">  
-    Email:<input type="text" name="email"/><br/><br/>  
-    Password:<input type="password" name="password"/><br/><br/>  
-    <input type="submit" value="login" name="login"/>
-    </form> 
+    <div class="login">
+      <img src="RecipeBook.jpeg" alt="Recipe Book Logo" class="logo_login"> 
+      <br style="clear:both" />
+      <header class="title">Login</header>
+      <br/>  
+    </div>
 
-    <form action="SignUp.jsp" method="post">    
-    <input type="submit" value="Sign Up"/>
-    </form>
+    <div class="content">
+      <form class="login_signup_form" action="LoginPage.jsp" method="post">  
+      Email:<input type="text" name="email"/><br/><br/>  
+      Password:<input type="password" name="password"/><br/><br/>  
+      <input type="submit" value="login" name="login"/>
+      <input type="submit" name="signup" value="Sign Up"/>
+      </form> 
+    </div>
     <% 
+        if(request.getParameter("signup") != null) {
+            response.sendRedirect("SignUp.jsp");
+        }
+
         String db = "CS157A";
         String user; // assumes database name is the same as username
         user = "root";
@@ -37,7 +43,7 @@
                 out.print("Hello " + rs.getString(2) + "!"); 
                 session.setAttribute("account_id",rs.getString(1));
                 session.setAttribute("username",rs.getString(2));
-                response.sendRedirect("MyRecipes.jsp");
+                response.sendRedirect("HomePage.jsp");
                 //response.sendRedirect("CreateRecipe.jsp");
               } else {
                 out.print("User and password does not exists");

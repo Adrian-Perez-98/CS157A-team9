@@ -1,0 +1,80 @@
+/* Style the body */
+body {
+    font-family: Arial;
+    margin:0;
+    /* padding:0; */
+  }
+  
+  /* Header/Logo Title */
+  .header {
+    font-family: Arial;
+    /* padding: 20px; */
+    text-align: left;
+    background: #5749D8;
+    color: white;
+    font-size: 30px;
+  }
+
+  .logo {
+    width:65px;
+    height:65px;
+    padding:10px;
+    float: left;
+    /* margin: 0px 15px 15px 0px; */
+  }
+
+   /* Header/Logo Title */
+   .login {
+    padding: 60px;
+    text-align: center;
+    background: #5749D8;
+    color: white;
+    font-size: 30px;  
+  }
+
+  .logo_login {
+    width:150px;
+    height:150px;
+    /* padding:10px; */
+    /* float: left; */
+    /* margin: 0px 15px 15px 0px; */
+  }
+
+  .title {
+    font-family: Arial;
+    display: inline-block;
+    padding: 30px;
+    /* text-align: center; */
+  }
+  
+  /* Page Content */
+  .content {
+    padding:20px;
+    text-align: center;
+  }
+
+  .home_button {
+    /* padding:4px; */
+    font-family: Arial;
+    /* color: #5749D8; */
+    /* border: none; */
+    border-left: black;
+    border-top: black;
+    border-bottom: black;
+    background-color: white;
+    text-align: center;
+    transition-duration: 0.4s;
+    float: left;
+  }
+  
+  .home_button:hover {
+    background-color: #5749D8; /* Green */
+    color: white;
+  }
+
+  .login_signup_form {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
