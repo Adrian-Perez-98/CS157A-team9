@@ -43,7 +43,6 @@
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Recipe_Book?autoReconnect=true&useSSL=false",user, password);
                     
                     Statement stmt = con.createStatement();
-                    String grocery_item_id = (String)session.getAttribute("grocery_item_id");
                     int i = stmt.executeUpdate("INSERT INTO Grocery_Item(grocery_item_id, name, description, price) " + 
                     "VALUES('" + grocery_item_id + "', '" + grocery_item_name + "', '" + short_desc + "', '" + price +  "')");
                     out.println("Grocery Item has been added."); 
