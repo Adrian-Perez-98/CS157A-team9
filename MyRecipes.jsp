@@ -40,9 +40,11 @@
                      out.println("Recipe: " + rs.getString(3) + "<br>Description: " + rs.getString(4) + "<br>"); 
                     %>
                         <form action="MyRecipes.jsp" method="post">
+                            <input type="hidden" value="<%=rs.getString(3)%>" name="recipe_title">
                             <input type="hidden" value=<%=recipe_id%> name="recipe_id"/>
-                            <input type="submit" value="Delete Recipe" name="remove_recipe"/>
+                            <input type="submit" value="View Recipe" name="view_recipe"/>
                             <input type="submit" value="Edit Recipe" name="edit_recipe"/>
+                            <input type="submit" value="Delete Recipe" name="remove_recipe"/>
                         </form>
                         </table></br>
                     <%
@@ -50,6 +52,14 @@
                 String remove_recipe = request.getParameter("remove_recipe");
                 String edit_recipe = request.getParameter("edit_recipe");
                 String recipe_id_from_form = request.getParameter("recipe_id");
+                String view_recipe = request.getParameter("view_recipe");
+                String recipe_title_from_form = request.getParameter("recipe_title");
+
+                if(view_recipe != null) {
+                    session.setAttribute("recipe_title", recipe_title_from_form);
+                    session.setAttribute("view_recipe_id", recipe_id_from_form);
+                    response.sendRedirect("ViewRecipe.jsp");
+                }
                 if(remove_recipe != null) {
                     Statement stmt2 = con.createStatement();
                     try {

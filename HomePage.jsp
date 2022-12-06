@@ -25,8 +25,39 @@
             </div>
             <br style="clear:both" />
 
-            <header class="title">Recomended Recipes</header><br>
+            <div class="container">
+            <form class="form-inline" method="post" action="HomePage.jsp">
+              <input type="text" name="title" class="form-control" placeholder="Search title..">
+              <button type="submit" name="save" class="btn btn-primary">Search</button>
+            </form>
+            </div>
           <%
+          String search_title = request.getParameter("title");
+          if(search_title != null) {
+
+            try {
+              java.sql.Connection con; 
+              Class.forName("com.mysql.jdbc.Driver");
+              con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Recipe_Book?autoReconnect=true&useSSL=false",user, password);
+              Statement stmt = con.createStatement();
+              ResultSet rs = stmt.executeQuery("SELECT * FROM Recipe WHERE private=0 AND NOT account_id=" + "'" + account_id + "' AND title LIKE '%" + search_title + "%'");
+              while(rs.next()) {
+                String recipe_id = rs.getString(1);
+                out.println("Recipe: " + rs.getString(3) + "<br>Description: " + rs.getString(4) + "<br>"); 
+                %>
+                    <form action="HomePage.jsp" method="post">
+                        <input type="hidden" value="<%=rs.getString(3)%>" name="recipe_title">
+                        <input type="hidden" value=<%=recipe_id%> name="recipe_id"/>
+                        <input type="submit" value="View Recipe" name="view_recipe"/>
+                    </form>
+                    </table>
+                <%
+              }
+            } catch(SQLException e) { 
+                  out.println("Something went wrong.<br/>");
+            }
+          }
+
           if(account_id != null) {
             System.out.print("we good.");
           }
@@ -42,6 +73,9 @@
               response.sendRedirect("LoginPage.jsp");
           }
           try {
+            %>
+            <br><header><b>Recomended Recipes</b></header><br>
+            <%
             java.sql.Connection con; 
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Recipe_Book?autoReconnect=true&useSSL=false",user, password);
@@ -53,6 +87,7 @@
                   out.println("Recipe: " + rs.getString(3) + "<br>Description: " + rs.getString(4) + "<br>"); 
                 %>
                     <form action="HomePage.jsp" method="post">
+                        <input type="hidden" value="<%=rs.getString(3)%>" name="recipe_title">
                         <input type="hidden" value=<%=recipe_id%> name="recipe_id"/>
                         <input type="submit" value="View Recipe" name="view_recipe"/>
                     </form>
@@ -61,7 +96,10 @@
             }
             String view_recipe = request.getParameter("view_recipe");
             String recipe_id_from_form = request.getParameter("recipe_id");
+            String recipe_title_from_form = request.getParameter("recipe_title");
+
             if(view_recipe != null) {
+                session.setAttribute("recipe_title", recipe_title_from_form);
                 session.setAttribute("view_recipe_id", recipe_id_from_form);
                 response.sendRedirect("ViewRecipe.jsp");
             }

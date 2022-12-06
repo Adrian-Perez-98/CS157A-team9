@@ -67,7 +67,6 @@
                         Short Description:<input type="text" value="<%=description%>" name="desc"/><br/><br/> 
                         Peperation Time:<input type="text" value="<%=prep_time%>" name="prep_time"/><br/><br/> 
                         Cook Time:<input type="text" value="<%=cook_time%>" name="cook_time"/><br/><br/> 
-                        Image:<input type = "file" value="<%=image%>" name = "image"/><br/><br/>
                         Recipes How To:<br/><textarea name="how_to" rows="8" cols="50"><%=how_to%></textarea><br/><br/>
                         Should this recipe be private? (<%=recipe_private%>) <input type="checkbox" name="private"><br/><br/>
                         <input type="submit" value="Save Changes" name="save_changes"/>
@@ -78,7 +77,6 @@
                     String new_description = request.getParameter("desc");
                     String new_prep_time = request.getParameter("prep_time");
                     String new_cook_time = request.getParameter("cook_time");
-                    String new_image = request.getParameter("image");
                     String new_how_to = request.getParameter("how_to");
                     String private_val = request.getParameter("private");
                     //out.println(private_val + "<br>");
@@ -93,7 +91,7 @@
                         try {
                             Statement stmt2 = con.createStatement();
                             int j = stmt.executeUpdate("UPDATE Recipe SET title='" + new_title + "', description='" + new_description +
-                            "', prep_time='" + new_prep_time + "', cook_time='" + new_cook_time + "', image_url='" + new_image + "', how_to='" + new_how_to +
+                            "', prep_time='" + new_prep_time + "', cook_time='" + new_cook_time + "', how_to='" + new_how_to +
                             "', private='" + private_int + "' WHERE account_id='" + account_id + "' AND recipe_id='" + curr_recipe_id + "'");
                             response.sendRedirect("EditRecipe.jsp");
                         } catch(SQLException e){
