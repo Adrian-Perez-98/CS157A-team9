@@ -1,93 +1,12 @@
-1) Boil the noodles: Cook the Fettuccine al dente, 
-according to package instructions.
-2) Cook the chicken: Season the chicken, 
-then pan-fry in oil and butter, for 6 minutes a side, 
-or until an internal temperature reaches 165 degrees F. 
-Transfer to a cutting board and let rest for a few minutes, 
-then cut into 1/2-inch thick slices. Tent with foil, while you prepare the sauce.
-3)Make the Alfredo sauce: Using the same pan you used to cook the chicken, the cream, 
-butter, and seasonings are incorporated and simmered on medium-low heat until thickened, 
-then the Parmesan is added in until melted and smooth.
-4)Assemble: Drain the pasta, reserving some of the liquid to loosen the sauce 
-(only if necessary.) Toss immediately with the Alfredo sauce. Divide the pasta 
-among serving bowls and top with a few slices of cooked chicken. Garnish with parsley, 
-more Parmesan, and black pepper if desired.
-
-
-1) Pound chicken to an even thickness
-Pound the boneless chicken breasts out to an even width so they cook evenly. 
-Basically, you're pounding the thick part down to the size of the thin part, 
-about a half-inch thick.
-2) Don't skimp on seasoning
-Salt and pepper the chicken well. Then don't bother with salting the flour and 
-bread crumbs.
-3) Add Parmesan to the bread crumbs
-Use Panko bread crumbs mixed with a little finely grated Parmesan cheese. 
-When you fry the breaded chicken, the Parmesan will give it an extra crunch and exciting flavor.
-4) Rest before cooking
-Before frying, let the breaded chicken sit on the counter for about 15 minutes to allow 
-the coating to adhere to the chicken breast.
-5) Go easy on the sauce
-THE KEY: Don't drown the poor breaded and fried chicken in sauce and smother it in 
-cheese. Too much of a good thing is too much. You did all the work creating a 
-crisp coating, why make it soggy with too much sauce and cheese?
-6) Make sure your oven is hot, hot, hot
-Be sure your oven is completely preheated to 450 F. You'll want the cheese to brown 
-slightly and the breading to crisp up before the chicken gets overcooked, and a 
-nice hot oven is the way to go.
-
-1) Preheat oven 430°F | 220°C. Lightly grease an oven tray (or baking dish) with non stick cooking oil spray; set aside.
-2) Whisk together eggs, garlic, parsley, salt and pepper in a shallow dish. Add chicken into the egg, rotating to evenly coat each fillet in the mixture. 
-Cover with plastic wrap and allow to marinate for at least 15 minutes (or overnight night if time allows for a deeper flavour).
-3) When chicken is ready for cooking, mix bread crumbs, Parmesan cheese and garlic powder together in a separate shallow bowl. Dip chicken into the breadcrumb mixture to evenly coat.
-4) Heat oil in a large skillet over medium-high heat until hot and shimmering. Fry chicken until golden and crispy, (about 4-5 minutes each side).
-5) Place chicken on prepared baking tray / dish and top each breast with about 1/3 cup of sauce (sauce recipe below). 
-Top each chicken breast with 2-3 slices of mozzarella cheese and about 2 tablespoons parmesan cheese. Sprinkle with basil or parsley. 
-6) Bake for 15-20 minutes, or until cheese is bubbling and melted, and the chicken is completely cooked through.
-
-
-MAKE THE CROUTONS:
-1) Preheat oven to 375°F.
-2) Drizzle bread cubes with enough olive oil so they are all very lightly coated. 
-Toss and add salt.
-3) Spread out onto a sheet pan and bake until edges turn brown, 7-10 minutes. 
-Keep a close eye on them so they don't burn, stir and toss them as needed.
-4) Set aside while you prepare the rest of the salad. Can be made several days in advance 
-and stored in an airtight container.
-
-MAKE THE DRESSING:
-1) Whisk together all ingredients.
-2) Store in the fridge until ready to use. Can be made at least 1 week in advance.
-
-ASSEMBLE THE SALAD:
-1) In a large bowl, toss the lettuce with enough dressing to lightly coat the leaves 
-(or to your preference). You may not need all of the dressing.
-2) Add half of the croutons and Parmesan cheese and toss again.
-3) Top with remaining croutons and cheese and serve immediately.
-
-1) Preheat the oven to 400°F.
-2) Wrap each beet in a piece of aluminum foil and drizzle generously with olive oil and 
-pinches of salt and pepper. Place the beets on a baking sheet and roast for 40 to 90 
-minutes, or until soft and fork-tender. The time will depend on the size and freshness 
-of the beets. Remove the beets from the oven, remove the foil, and set aside to cool. 
-When they are cool to the touch, peel the skins. I like to hold them under running
-water and slide the skins off with my hands.
-3) Let the beets cool and chill them in the fridge until ready to use.
-4) Assemble the salad with the greens, shallots, apples, walnuts, cheese, 
-and microgreens, if using. Drizzle with balsamic vinaigrette. 
-Season with flaky sea salt and pepper and serve.
-
-1) Preheat the oven to 350 F.
-2) Microwave the butter for about 40 seconds. 
-Butter should be completely melted but shouldn't be hot.
-3) In a large bowl, mix butter with the sugars until well-combined.
-4) Stir in vanilla and egg until incorporated.
-5) Add the flour, baking soda, and salt. 
-Please read the recipe note about properly measuring flour. 
-6) Mix dough until just combined. 
-Dough should be soft and a little sticky but not overly sticky.
-7) Stir in chocolate chips.
-8) Scoop out 1.5 tablespoons of dough (medium cookie scoop) and place 2 inches apart on 
-baking sheet.
-9) Bake for 7-10 minutes, or until cookies are set. They will be puffy and still look a 
-little underbaked in the middle
+1) Login Page
+2) Sign Up Page
+3) Home
+    - Search
+    - Recomended
+    - View 
+        - Comment
+        - Rate
+4) My Recipe Page
+5) Create Recipe Page
+6) Edit Recipe Page
+7) Sign Out

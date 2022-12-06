@@ -26,7 +26,7 @@
               <img src="RecipeBook.jpeg" alt="Recipe Book Logo" class="logo">
               <header class="title">Viewing: ${recipe_title}</header>
               <br/> 
-              <form action="HomePage.jsp" method="post"> 
+              <form action="ViewRecipe.jsp" method="post"> 
                 <input type="submit" value="Home" name="home" class="home_button"/>   
                 <input type="submit" value="My Recipes" name="my_recipes" class="home_button"/>
                 <input type="submit" value="My Grocery Lists" name="my_grocery_lists" class="home_button"/>
@@ -35,8 +35,20 @@
             </div>
             <br style="clear:both" />
           <%
-
-
+            if(request.getParameter("home") != null) {
+                response.sendRedirect("HomePage.jsp");
+            }
+            if(request.getParameter("my_recipes") != null) {
+              response.sendRedirect("MyRecipes.jsp");
+            }
+            if(request.getParameter("my_grocery_lists") != null) {
+                response.sendRedirect("GroceryList.jsp");
+            }
+            if(request.getParameter("sign_out") != null) {
+                session.invalidate();
+                out.print("Signed Out.\n");
+                response.sendRedirect("LoginPage.jsp");
+            }
         } else {
             out.println("You don't have access to this page.<br/>");
         }
@@ -135,6 +147,7 @@
             if(request.getParameter("review_button") != null) {
                 int rating = 0;   
             }  
+
         } catch(SQLException e) {
             out.println("Something went wrong.<br/>");
         } 

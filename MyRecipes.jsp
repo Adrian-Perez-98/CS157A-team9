@@ -20,8 +20,9 @@
                 <img src="RecipeBook.jpeg" alt="Recipe Book Logo" class="logo"> 
                 <header class="title">My Recipes</header>
                 <br/> 
-                <form action="HomePage.jsp" method="post">    
+                <form action="MyRecipes.jsp" method="post">    
                 <input type="submit" value="Home" name="home" class="home_button"/>
+                <input type="submit" value="Create Recipe" name="create_recipe" class="home_button"/>
                 <input type="submit" value="My Grocery Lists" name="my_grocery_lists" class="home_button"/>
                 <input type="submit" value="Sign Out" name="sign_out" class="home_button"/>
                 </form>
@@ -80,10 +81,13 @@
                 out.println("Something went wrong.<br/>");
             }
             if(request.getParameter("home") != null) {
-            response.sendRedirect("HomePage.jsp");
+                response.sendRedirect("HomePage.jsp");
             }
             if(request.getParameter("my_grocery_lists") != null) {
                 response.sendRedirect("GroceryList.jsp");
+            }
+            if(request.getParameter("create_recipe") != null) {
+                response.sendRedirect("CreateRecipe.jsp");
             }
             if(request.getParameter("sign_out") != null) {
                 session.invalidate();

@@ -1,5 +1,6 @@
 <%@ page import="java.sql.*"%>
 <html>
+ <link rel="stylesheet" href="style.css"> 
   <head>
     <title>Recipe Form</title>
     </head>
@@ -16,32 +17,37 @@
             String username = (String)o2;
             //out.println("Hello " + username + "!");
             %>
-                <h3>Recipe Form</h3>
+            <div class="header">
+              <img src="RecipeBook.jpeg" alt="Recipe Book Logo" class="logo">
+              <header class="title">Recipe Create Form</header>
+              <br/> 
+              <form action="ViewRecipe.jsp" method="post"> 
+                <input type="submit" value="Home" name="home" class="home_button"/>   
+                <input type="submit" value="My Recipes" name="my_recipes" class="home_button"/>
+                <input type="submit" value="My Grocery Lists" name="my_grocery_lists" class="home_button"/>
+                <input type="submit" value="Sign Out" name="sign_out" class="home_button"/>
+            </form>
+            </div>
+            <br style="clear:both" />
                 <form action="CreateRecipe.jsp" method="post">  
                     Recipe Title:<input type="text" name="recipe_name"/><br/><br/>  
                     Short Description:<input type="text" name="desc"/><br/><br/> 
                     Peperation Time:<input type="text" name="prep_time"/><br/><br/> 
                     Cook Time:<input type="text" name="cook_time"/><br/><br/>
-                    Image:<input type = "file" name = "image"/><br/><br/>
                     Recipe's How To:<br/><textarea name="how_to" rows="8" cols="50">Please describe how to prepare this recipe.</textarea><br/><br/>
                     Should this recipe be private? <input type="checkbox" name="private"><br/><br/>
-                    <input type="submit" value="Add Recipe"/>
+                    <input type="submit" value="Add Recipe" name="add"/>
                 </form> 
                 <br/>
-                <form action="LoginPage.jsp" method="post"> 
-                    <input type="submit" value="Sign Out" name="sign_out"/>
-                </form>
             <%
-            out.println(username + " is signed in."); 
             try {
                 String recipe_name = request.getParameter("recipe_name");
                 String short_desc = request.getParameter("desc");
                 String prep_time = request.getParameter("prep_time");
                 String cook_time = request.getParameter("cook_time");
                 String private_val = request.getParameter("private");
-                String image = request.getParameter("image");
                 String how_to = request.getParameter("how_to");
-                if(recipe_name != "" && short_desc != "" && prep_time != "" && cook_time != "") {
+                if(recipe_name != "" && short_desc != "" && prep_time != "" && cook_time != "" && (request.getParameter("recipe_name") != null)) {
                     int private_int = 0;
                     if(private_val != null) {
                         private_int = 1;
@@ -52,14 +58,28 @@
                     
                     Statement stmt = con.createStatement();
                     //ResultSet rs = stmt.executeQuery("SELECT * FROM User");
-                    int i = stmt.executeUpdate("INSERT INTO Recipe(account_id, title, description, prep_time, cook_time, image_url, how_to, private) " + 
-                    "VALUES('" + account_id + "', '" + recipe_name + "', '" + short_desc + "', '" + prep_time + "', '" + cook_time + "', '" + image + "', '" + how_to + "', '" + private_int +  "')");
+                    int i = stmt.executeUpdate("INSERT INTO Recipe(account_id, title, description, prep_time, cook_time, how_to, private) " + 
+                    "VALUES('" + account_id + "', '" + recipe_name + "', '" + short_desc + "', '" + prep_time + "', '" + cook_time + "', '" + how_to + "', '" + private_int +  "')");
                     out.println("Recipe has been added."); 
 
                     stmt.close();
                     con.close();
                 } else {
                     out.println("Missing fields! make sure: Recipe Title, Short Description, Peperation Time, and Cook Time are filled out."); 
+                }
+                if(request.getParameter("home") != null) {
+                response.sendRedirect("HomePage.jsp");
+                }
+                if(request.getParameter("my_recipes") != null) {
+                response.sendRedirect("MyRecipes.jsp");
+                }
+                if(request.getParameter("my_grocery_lists") != null) {
+                    response.sendRedirect("GroceryList.jsp");
+                }
+                if(request.getParameter("sign_out") != null) {
+                    session.invalidate();
+                    out.print("Signed Out.\n");
+                    response.sendRedirect("LoginPage.jsp");
                 }
             } catch(SQLException e) { 
                 out.println("Something went wrong.<br/>");

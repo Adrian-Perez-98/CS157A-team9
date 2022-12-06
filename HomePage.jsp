@@ -58,9 +58,6 @@
             }
           }
 
-          if(account_id != null) {
-            System.out.print("we good.");
-          }
           if(request.getParameter("my_recipes") != null) {
               response.sendRedirect("MyRecipes.jsp");
           }
