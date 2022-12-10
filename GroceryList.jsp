@@ -35,24 +35,27 @@
                 
                 con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Recipe_Book?autoReconnect=true&useSSL=false",user, password);
                 Statement stmt = con.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM Recipe WHERE account_id=" + "'" + account_id + "'");
-          
+                ResultSet rs = stmt.executeQuery("SELECT * FROM Grocery_List");
                 while (rs.next()) { 
                     String grocery_list_id = rs.getString(1);
                     %><table><% 
                     out.println("GroceryList: " + rs.getString(3) + "<br>Description: " + rs.getString(4) + "<br>");
                     %>
-                        <form action="GroceryList.jsp" method="post">
+                        <form action="GroceryItem.jsp" method="post">
                             <input type="hidden" value="<%=rs.getString(3)%>" name="grocery_list_title">
                             <input type="hidden" value=<%=grocery_list_id%> name="grocery_list_id"/>
                             <input type="submit" value="View Grocery List" name="view_grocery_list"/>
-                            <input type="submit" value="Edit Grocery List" name="edit_grocery_list"/>
+                        </form>
+                    
+                        <form action="GroceryList.jsp" method="post">
+                            <input type="hidden" value="<%=rs.getString(3)%>" name="grocery_list_title">
+                            <input type="hidden" value=<%=grocery_list_id%> name="grocery_list_id"/>
                             <input type="submit" value="Delete Grocery List" name="remove_grocery_list"/>
                         </form>
+                    
                         </table></br>
                     <%
                 }
-                //out.print("Connect4");
                 String grocery_list_id_from_form = request.getParameter("grocery_list_id");
                 String grocery_title_from_form = request.getParameter("grocery_list_title");
                 String remove_grocery_list = request.getParameter("remove_grocery_list");
@@ -62,7 +65,7 @@
                 if(view_grocery_list != null) {
                     session.setAttribute("grocery_list_title", grocery_title_from_form);
                     session.setAttribute("view_grocery_list", grocery_list_id_from_form);
-                    response.sendRedirect("GroceryList.jsp");
+                    response.sendRedirect("GroceryItem.jsp");
                 }
                 if(remove_grocery_list != null) {
                     Statement stmt2 = con.createStatement();

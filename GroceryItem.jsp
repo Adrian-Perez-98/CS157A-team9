@@ -1,63 +1,91 @@
 <%@ page import="java.sql.*"%>
 <html>
-  <head>
-    <title>Grocery Item Form</title>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" />
     </head>
-  <body>
-      <% 
+    <link rel="stylesheet" href="style.css"> 
+    <% 
         String db = "CS157A";
         String user; // assumes database name is the same as username
         user = "root";
         String password = "ultimate1";
-        Object o1 = session.getAttribute("account_id");
-        Object o2 = session.getAttribute("username");
-        if(o1 != null) {
-            String account_id = (String)o1;
-            String username = (String)o2;
-            
-            String grocery_item_id = (String)session.getAttribute("grocery_item_id");
+        java.sql.Connection con; 
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Recipe_Book?autoReconnect=true&useSSL=false",user, password);
+
+        String account_id = (String)session.getAttribute("account_id");
+        String username = (String)session.getAttribute("username");
+        String grocery_item = (String)session.getAttribute("grocery_item");
+        String description = (String)session.getAttribute("description");
+        String price = (String)session.getAttribute("price");
+
+        if(account_id != null) { 
             %>
-                <h3>Grocery Item Form</h3>
-                <form action="GroceryItem.jsp" method="post">  
-                    Grocery Item Name:<input type="text" name="grocery_item_name"/><br/><br/>  
-                    Short Description:<input type="text" name="desc"/><br/><br/> 
-                    Price:<input type="text" name="price"/><br/><br/> 
-                    <input type="submit" value="Add Grocery Item"/>
-                </form> 
-                <br/>
-                <form action="LoginPage.jsp" method="post"> 
-                    <input type="submit" value="Sign Out" name="sign_out"/>
-                </form>
-            <%
-            out.println(username + " is signed in."); 
-            try {
-                String grocery_item_name = request.getParameter("grocery_item_name");
-                String short_desc = request.getParameter("desc");
-                String price = request.getParameter("price");
-                if(grocery_item_name != "" && short_desc != "" && price != "") {
-                    int private_int = 0;
-                    if(private_val != null) {
-                        private_int = 1;
-                    }
-                    java.sql.Connection con; 
-                    Class.forName("com.mysql.jdbc.Driver");
-                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Recipe_Book?autoReconnect=true&useSSL=false",user, password);
-                    
-                    Statement stmt = con.createStatement();
-                    int i = stmt.executeUpdate("INSERT INTO Grocery_Item(grocery_item_id, name, description, price) " + 
-                    "VALUES('" + grocery_item_id + "', '" + grocery_item_name + "', '" + short_desc + "', '" + price +  "')");
-                    out.println("Grocery Item has been added."); 
-                    stmt.close();
-                    con.close();
-                } else {
-                    out.println("Missing fields! make sure: Grocery Item, Description, and Price are added"); 
-                }
-            } catch(SQLException e) { 
-                out.println("Something went wrong.<br/>");
+            <div class="header">
+              <img src="RecipeBook.jpeg" alt="Recipe Book Logo" class="logo">
+              <header class="title">My Grocery Items</header>
+              <br/> 
+              <form action="GroceryItem.jsp" method="post"> 
+                <input type="submit" value="Home" name="home" class="home_button"/>   
+                <input type="submit" value="My Recipes" name="my_recipes" class="home_button"/>
+                <input type="submit" value="My Grocery Lists" name="my_grocery_lists" class="home_button"/>
+                <input type="submit" value="Sign Out" name="sign_out" class="home_button"/>
+            </form>
+            </div>
+            <br style="clear:both" />
+          <%
+            if(request.getParameter("home") != null) {
+                response.sendRedirect("HomePage.jsp");
+            }
+            if(request.getParameter("my_recipes") != null) {
+              response.sendRedirect("MyRecipes.jsp");
+            }
+            if(request.getParameter("my_grocery_lists") != null) {
+                response.sendRedirect("GroceryList.jsp");
+            }
+            if(request.getParameter("sign_out") != null) {
+                session.invalidate();
+                out.print("Signed Out.\n");
+                response.sendRedirect("LoginPage.jsp");
             }
         } else {
-            out.println("You don't have access to this page.");
+            out.println("You don't have access to this page.<br/>");
         }
-    %>
+
+        Statement stmt = con.createStatement();
+        try {
+        	String groceryListId = request.getParameter("grocery_list_id");
+        	String query = "SELECT * FROM Grocery_Item gi inner join grocery_list gl on gi.description = gl.description WHERE gl.grocery_list_id = '" + groceryListId + "'";
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()) {
+                    
+                    String grocery_name = rs.getString(2);
+                    String grocery_description = rs.getString(3);
+                    String grocery_price = rs.getString(4);
+                    %>
+                        <div class="content">
+                        <table style="width:30%">
+                        	<tr>
+                                <td><b>Name:</td>
+                                <td></b> <%=grocery_name%><br></td>
+                            </tr>
+                            <tr>
+                                <td><b>Description:</td>
+                                <td></b> <%=grocery_description%><br></td>
+                            </tr>
+                            <tr>
+                                <td><b>Price:</b></td>
+                                <td><%=grocery_price%></td>
+                            </tr>
+                        </table>
+                      </div>
+         <%  
+            }
+        } catch(SQLException e) {
+            out.println("Something went wrong.<br/>");
+        } 
+ %>
   </body>
 </html>
