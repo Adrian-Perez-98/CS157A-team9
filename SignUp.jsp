@@ -17,7 +17,7 @@
       <input type="submit" value="Sign Up" name="sign_up"/>
       </form> 
     <% 
-        String db = "CS157A";
+        String db = "recipe_book";
         String user; // assumes database name is the same as username
         user = "root";
         String password = "ultimate1";
@@ -28,8 +28,8 @@
         if(form_username != "" && form_user_email != "" && form_password != "" && request.getParameter("sign_up") != null) {
               try {
                     java.sql.Connection con; 
-                    Class.forName("com.mysql.jdbc.Driver");
-                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Recipe_Book?autoReconnect=true&useSSL=false",user, password);
+                    Class.forName("com.mysql.jdbc.Driver"); //Sign in to Database
+                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipe_book?autoReconnect=true&useSSL=false",user, password);
                     
                     Statement stmt = con.createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT * FROM User WHERE username='" + form_username + "'");
@@ -49,9 +49,8 @@
                             out.print("User already exists.\n");
                         }
                     } else {
-                      out.print("User already exists.\n");
+                        out.print("User already exists.\n");
                     }
-                
                     rs.close();
                     stmt.close();
                     con.close();

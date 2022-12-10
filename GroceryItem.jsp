@@ -1,7 +1,7 @@
 <%@ page import="java.sql.*"%>
 <html>
   <head>
-    <title>Grocery Form</title>
+    <title>Grocery Item Form</title>
     </head>
   <body>
       <% 
@@ -14,9 +14,10 @@
         if(o1 != null) {
             String account_id = (String)o1;
             String username = (String)o2;
+            
             String grocery_item_id = (String)session.getAttribute("grocery_item_id");
             %>
-                <h3>Recipe Form</h3>
+                <h3>Grocery Item Form</h3>
                 <form action="GroceryItem.jsp" method="post">  
                     Grocery Item Name:<input type="text" name="grocery_item_name"/><br/><br/>  
                     Short Description:<input type="text" name="desc"/><br/><br/> 
